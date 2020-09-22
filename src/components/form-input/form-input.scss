@@ -1,0 +1,23 @@
+.form-field {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+
+  &__label,
+  &__control {
+    color: #000;
+    font-size: 18px;
+    font-weight: 300;
+  }
+
+  &__label {
+    color: #000;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+  }
+
+  &__control {
+    font-family: 'Open Sans';
+    padding: 5px 10px;
+  }
+}

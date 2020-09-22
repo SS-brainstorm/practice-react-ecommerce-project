@@ -3,7 +3,7 @@ import DirectoryMenu from '../../components/directory-menu/directory-menu';
 import './homepage.scss';
 
 const HomePage = () => (
-  <div className='homepage'>
+  <div className='container'>
     <DirectoryMenu />
   </div>
 );

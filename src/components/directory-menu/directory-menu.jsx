@@ -9,7 +9,7 @@ const DirectoryMenu = () => {
             id: 1,
             image: 'https://picsum.photos/id/300/500',
             title: 'Hats',
-            url: ''
+            url: 'hats'
         },
         {
             id: 2,
@@ -28,7 +28,7 @@ const DirectoryMenu = () => {
             image: 'https://picsum.photos/id/100/500',
             title: 'Mens',
             large: true,
-            url: 'hats'
+            url: ''
         },
         {
             id: 5,

@@ -1,0 +1,68 @@
+.collection-item {
+  $this: &;
+
+  &:hover {
+    #{$this}__add-btn {
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+
+  &__image {
+    position: relative;
+
+    img {
+      object-fit: cover;
+      display: block;
+      height: 330px;
+      width: 100%;
+    }
+  }
+
+  &__add-btn {
+    background-color: #fff;
+    border: 0;
+    color: #000;
+    cursor: pointer;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 30px;
+    text-transform: uppercase;
+    padding: 10px 15px;
+    font-weight: 300;
+    transition: all 300ms ease;
+    visibility: hidden;
+    opacity: 0;
+
+    &:hover,
+    &:focus {
+      background-color: #000;
+      color: #fff;
+    }
+  }
+
+  &__content {
+    align-items: top;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 -10px;
+    padding: 10px 0 0;
+
+    > * {
+      padding: 0 10px;
+    }
+  }
+
+  &__title {
+    margin: 0;
+    font-size: 21px;
+    line-height: 24px;
+  }
+
+  &__price {
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 24px;
+  }
+}

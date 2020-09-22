@@ -4,7 +4,7 @@ import classnames from 'classnames';
 
 import './menu-item.scss';
 
-const MenuItem = ({ image, title, large, history, match, url }) => {
+const MenuItem = ({ image, title, large, match, url }) => {
   const itemClassName = classnames({
     'menu-item': true,
     'is-large': large,
