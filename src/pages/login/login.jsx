@@ -1,22 +1,22 @@
-import React from 'react';
+import React from "react";
+import SignIn from "../../components/sign-in/sign-in";
 
-import SignIn from '../../components/sign-in/sign-in';
+import "./login.scss";
+import Registration from "../../components/registration/registration";
 
-import './login.scss';
-
-const LoginPage = () => {
-  return (
-    <div className='container'>
-      <div className='login-page'>
-        <div className='login-page__sign-in'>
-          <SignIn />
+function Login(props) {
+    return (
+        <div className="container">
+            <div className="login-page">
+                <div className="login-page__sign-in">
+                    <SignIn />
+                </div>
+                <div className="login-page__registration">
+                    <Registration />
+                </div>
+            </div>
         </div>
-        <div className='login-page__registration'>
-          2
-        </div>
-      </div>
-    </div>
-  )
+    );
 }
 
-export default LoginPage
+export default Login;

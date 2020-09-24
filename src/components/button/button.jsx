@@ -1,8 +1,18 @@
 import React from 'react'
+import classnames from "classnames";
 
-const Button = ({ children, className, onClick, ...restProps }) => {
+import "./button.scss";
+
+const Button = ({ children, className, onClick, mode, ...restProps }) => {
+  const btnClassName = classnames({
+    'button': true,
+    'is-white': mode === 'white',
+    'is-blue': mode === 'blue',
+    [className]: className
+  });
+
   return (
-    <button className='button' onClick={onClick} {...restProps}>
+    <button className={btnClassName} onClick={onClick} {...restProps}>
       {children}
     </button>
   )
