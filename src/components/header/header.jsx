@@ -9,7 +9,6 @@ import { ReactComponent as LogoIcon } from '../../assets/crown.svg';
 // TODO: realise active link
 
 const Header = ({ currentUser, signOut }) => {
-
   return (
     <header className='header'>
       <div className='container'>

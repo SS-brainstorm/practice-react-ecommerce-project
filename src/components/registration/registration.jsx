@@ -2,15 +2,19 @@ import React, { useState } from 'react';
 import FormInput from "../form-input/form-input";
 import Button from "../button/button";
 
+import {auth, createUserProfileDocument} from "../../firebase/firebase";
+
 import "./registration.scss";
 
 const Registration = () => {
-    const [formData, setFormData] = useState({
-        'display_name': '',
-        'email': '',
-        'password': '',
-        'password_confirm': '',
-    });
+    const initialFormData = {
+        displayName: '',
+        email: '',
+        password: '',
+        passwordConfirm: '',
+    };
+
+    const [formData, setFormData] = useState({ ...initialFormData });
 
     const handleInput = (event) => {
         const { name, value } = event.target;
@@ -21,8 +25,23 @@ const Registration = () => {
         });
     };
 
-    const handleSubmit = event => {
+    const handleSubmit = async event => {
         event.preventDefault();
+
+        const { displayName, email, password, passwordConfirm } = formData;
+
+        if (password !== passwordConfirm) {
+            return;
+        }
+
+        try {
+            const { user } = await auth.createUserWithEmailAndPassword(email, password);
+            await createUserProfileDocument(user, { displayName });
+
+            setFormData({ ...initialFormData })
+        } catch (error) {
+            console.error(error);
+        }
     }
 
     return (
@@ -37,7 +56,7 @@ const Registration = () => {
                     onChange={handleInput}
                     placeholder="Display Name"
                     type="text"
-                    name="display_name"
+                    name="displayName"
                     label="Display Name"
                 />
                 <FormInput
@@ -61,7 +80,7 @@ const Registration = () => {
                     onChange={handleInput}
                     placeholder="Confirm Password"
                     type="password"
-                    name="password_confirm"
+                    name="passwordConfirm"
                     label="Confirm Password"
                 />
                 <div className="form__actions">

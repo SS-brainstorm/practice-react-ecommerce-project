@@ -6,14 +6,25 @@ import ShopPage from './pages/shop/shop';
 import LoginPage from './pages/login/login';
 import Header from './components/header/header';
 
-import {auth} from "./firebase/firebase";
+import { auth, createUserProfileDocument } from "./firebase/firebase";
 
 function App() {
     const [currentUser, setCurrentUser] = useState(null);
 
     useEffect(() => {
-        const unsubscribe = auth.onAuthStateChanged(user => {
-            setCurrentUser(user);
+        const unsubscribe = auth.onAuthStateChanged(async userAuth => {
+            if (userAuth) {
+                const userRef = await createUserProfileDocument(userAuth);
+
+                userRef.onSnapshot(snapshot => {
+                    setCurrentUser({
+                        id: snapshot.id,
+                        ...snapshot.data()
+                    });
+                });
+            } else {
+                setCurrentUser(userAuth);
+            }
         });
 
         return () => {
