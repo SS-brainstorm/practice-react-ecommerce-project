@@ -1,14 +1,21 @@
 import React from 'react';
 // import classnames from 'classnames';
-import { Link, withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import './header.scss';
 import { ReactComponent as LogoIcon } from '../../assets/crown.svg';
-// import { ReactComponent as CartIcon } from '../../assets/cart.svg';
+import CartButton from "../cart-button/cart-button";
+import CartDropdown from "../cart-dropdown/cart-dropdown";
 
 // TODO: realise active link
 
-const Header = ({ currentUser, signOut }) => {
+const mapStateToProps = ({ user, cart }) => ({
+  currentUser: user.currentUser,
+  showCart: cart.hidden
+});
+
+const Header = ({ showCart, currentUser, signOut }) => {
   return (
     <header className='header'>
       <div className='container'>
@@ -24,11 +31,13 @@ const Header = ({ currentUser, signOut }) => {
                   ? <a href='#' className='header__nav-item' onClick={signOut}>Sign-out</a>
                   : <Link className='header__nav-item' to='/login'>Sign-in</Link>
             }
+            <CartButton className='header__nav-item' />
           </nav>
+          { showCart ? <CartDropdown className='header__cart-dropdown' /> }
         </div>
       </div>
     </header>
   )
 }
 
-export default withRouter(Header);
+export default connect(mapStateToProps)(Header);

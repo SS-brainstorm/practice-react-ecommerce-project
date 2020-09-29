@@ -5,14 +5,22 @@
     align-items: center;
     display: flex;
     margin: 0 -10px;
+    position: relative;
+  }
 
-    > * {
-      padding: 0 10px;
-    }
+  &__logo,
+  &__nav {
+    padding: 0 10px;
   }
 
   &__logo + * {
     margin-left: auto;
+  }
+
+  &__nav {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
   }
 
   &__nav-item {
@@ -36,13 +44,19 @@
       opacity: 0;
     }
 
-    &.is-active,
-    &:hover,
-    &:focus {
+    &:not(button).is-active,
+    &:not(button):hover,
+    &:not(button):focus {
       &::after {
         width: 100%;
         opacity: 1;
       }
     }
+  }
+
+  &__cart-dropdown {
+    position: absolute;
+    right: 0;
+    top: 100%;
   }
 }
