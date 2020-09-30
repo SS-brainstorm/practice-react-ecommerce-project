@@ -1,5 +1,4 @@
 import React from 'react';
-// import classnames from 'classnames';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
@@ -9,11 +8,6 @@ import CartButton from "../cart-button/cart-button";
 import CartDropdown from "../cart-dropdown/cart-dropdown";
 
 // TODO: realise active link
-
-const mapStateToProps = ({ user, cart }) => ({
-  currentUser: user.currentUser,
-  showCart: cart.hidden
-});
 
 const Header = ({ showCart, currentUser, signOut }) => {
   return (
@@ -33,11 +27,16 @@ const Header = ({ showCart, currentUser, signOut }) => {
             }
             <CartButton className='header__nav-item' />
           </nav>
-          { showCart ? <CartDropdown className='header__cart-dropdown' /> }
+          { showCart ? <CartDropdown className='header__cart-dropdown' /> : null }
         </div>
       </div>
     </header>
   )
 }
+
+const mapStateToProps = ({ user, cart }) => ({
+  currentUser: user.currentUser,
+  showCart: !cart.hidden
+});
 
 export default connect(mapStateToProps)(Header);
