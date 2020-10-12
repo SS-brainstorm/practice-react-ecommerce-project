@@ -9,6 +9,9 @@ import Header from './components/header/header';
 
 import { auth, createUserProfileDocument } from "./firebase/firebase";
 import { setCurrentUser } from "./redux/user/user.actions";
+import { selectCurrentUser } from "./redux/user/user.selectors";
+import { createStructuredSelector } from "reselect";
+import CheckoutPage from "./pages/checkout/checkout";
 
 function App({ setCurrentUser, currentUser }) {
     useEffect(() => {
@@ -49,13 +52,14 @@ function App({ setCurrentUser, currentUser }) {
                 <Route exact path='/' component={HomePage}/>
                 <Route exact path='/shop' component={ShopPage}/>
                 <Route exact path='/login' render={() => currentUser ? <Redirect to="/" /> : <LoginPage />} />
+                <Route exact path='/checkout' component={CheckoutPage} />
             </Switch>
         </>
     );
 }
 
-const mapStateToProps = ({ user }) => ({
-    currentUser: user.currentUser
+const mapStateToProps = createStructuredSelector({
+    currentUser: selectCurrentUser
 });
 
 const mapDispatchToProps = dispatch => ({
