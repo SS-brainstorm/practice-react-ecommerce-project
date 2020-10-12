@@ -6,16 +6,11 @@ import { ReactComponent as ShoppingIcon } from "../../assets/cart.svg";
 import "./cart-button.scss";
 import {toggleCartHidden} from "../../redux/cart/cart.actions";
 
-const CartButton = ({ className, toggleCartHidden, cartItems, ...rest }) => {
+const CartButton = ({ className, toggleCartHidden, cartItemsCount, ...rest }) => {
     const buttonClassName = classnames({
         'cart-button': true,
         [className]: className
     });
-
-    const cartItemsCount = cartItems.reduce((cur, next) => {
-        cur += next.quantity;
-        return cur;
-    }, 0);
 
     return (
         <button className={buttonClassName} onClick={toggleCartHidden} {...rest}>
@@ -26,7 +21,7 @@ const CartButton = ({ className, toggleCartHidden, cartItems, ...rest }) => {
 };
 
 const mapStateToProps = ({ cart }) => ({
-    cartItems: cart.cartItems,
+    cartItemsCount: cart.cartItems.reduce((cur, next) => cur += next.quantity, 0),
 });
 
 const mapDispatchToProps = dispatch => ({
