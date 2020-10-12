@@ -21,7 +21,7 @@ const CartButton = ({ className, toggleCartHidden, cartItemsCount, ...rest }) =>
 };
 
 const mapStateToProps = ({ cart }) => ({
-    cartItemsCount: cart.cartItems.reduce((cur, next) => cur += next.quantity, 0),
+    cartItemsCount: cart.cartItems.reduce((cur, next) => cur + next.quantity, 0),
 });
 
 const mapDispatchToProps = dispatch => ({
