@@ -4,7 +4,9 @@ import { connect } from "react-redux";
 import { ReactComponent as ShoppingIcon } from "../../assets/cart.svg";
 
 import "./cart-button.scss";
-import {toggleCartHidden} from "../../redux/cart/cart.actions";
+import { toggleCartHidden } from "../../redux/cart/cart.actions";
+import { selectCartItemsCount } from "../../redux/cart/cart.selectors";
+
 
 const CartButton = ({ className, toggleCartHidden, cartItemsCount, ...rest }) => {
     const buttonClassName = classnames({
@@ -20,8 +22,8 @@ const CartButton = ({ className, toggleCartHidden, cartItemsCount, ...rest }) =>
     );
 };
 
-const mapStateToProps = ({ cart }) => ({
-    cartItemsCount: cart.cartItems.reduce((cur, next) => cur + next.quantity, 0),
+const mapStateToProps = state => ({
+    cartItemsCount: selectCartItemsCount(state)
 });
 
 const mapDispatchToProps = dispatch => ({
