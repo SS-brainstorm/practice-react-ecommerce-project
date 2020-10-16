@@ -1,44 +1,13 @@
-import React, {useState} from 'react';
+import React from 'react';
+import { createStructuredSelector } from "reselect";
+import { connect } from "react-redux";
+
 import MenuItem from '../menu-item/menu-item';
+import { selectDirectorySections } from "../../redux/directory/directory.selectors";
 
 import './directory-menu.scss';
 
-const DirectoryMenu = () => {
-    const [items, setItems] = useState([
-        {
-            id: 1,
-            image: 'https://picsum.photos/id/300/500',
-            title: 'Hats',
-            url: 'hats'
-        },
-        {
-            id: 2,
-            image: 'https://picsum.photos/id/400/500',
-            title: 'Jackets',
-            url: ''
-        },
-        {
-            id: 3,
-            image: 'https://picsum.photos/id/500/500',
-            title: 'Sneakers',
-            url: ''
-        },
-        {
-            id: 4,
-            image: 'https://picsum.photos/id/100/500',
-            title: 'Mens',
-            large: true,
-            url: ''
-        },
-        {
-            id: 5,
-            image: 'https://picsum.photos/id/200/500',
-            title: 'Womens',
-            large: true,
-            url: ''
-        },
-    ])
-
+const DirectoryMenu = ({ items }) => {
     return (
         <div className='directory-menu'>
             {
@@ -48,4 +17,8 @@ const DirectoryMenu = () => {
     );
 }
 
-export default DirectoryMenu;
+const mapStateToProps = createStructuredSelector({
+    items: selectDirectorySections
+});
+
+export default connect(mapStateToProps)(DirectoryMenu);

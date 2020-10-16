@@ -50,9 +50,9 @@ function App({ setCurrentUser, currentUser }) {
             <Header signOut={signOut} />
             <Switch>
                 <Route exact path='/' component={HomePage}/>
-                <Route exact path='/shop' component={ShopPage}/>
                 <Route exact path='/login' render={() => currentUser ? <Redirect to="/" /> : <LoginPage />} />
                 <Route exact path='/checkout' component={CheckoutPage} />
+                <Route path='/shop' component={ShopPage}/>
             </Switch>
         </>
     );
