@@ -1,17 +1,17 @@
 import React, { useEffect } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
 
 import HomePage from './pages/homepage/homepage';
 import ShopPage from './pages/shop/shop';
 import LoginPage from './pages/login/login';
+import CheckoutPage from "./pages/checkout/checkout";
 import Header from './components/header/header';
 
 import { auth, createUserProfileDocument } from "./firebase/firebase";
 import { setCurrentUser } from "./redux/user/user.actions";
 import { selectCurrentUser } from "./redux/user/user.selectors";
-import { createStructuredSelector } from "reselect";
-import CheckoutPage from "./pages/checkout/checkout";
 
 function App({ setCurrentUser, currentUser }) {
     useEffect(() => {
@@ -25,6 +25,7 @@ function App({ setCurrentUser, currentUser }) {
                         ...snapshot.data()
                     });
                 });
+
             } else {
                 setCurrentUser(userAuth);
             }
@@ -59,7 +60,7 @@ function App({ setCurrentUser, currentUser }) {
 }
 
 const mapStateToProps = createStructuredSelector({
-    currentUser: selectCurrentUser
+    currentUser: selectCurrentUser,
 });
 
 const mapDispatchToProps = dispatch => ({
