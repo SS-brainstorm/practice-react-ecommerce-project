@@ -11,7 +11,7 @@ const CollectionPage = ({ collection }) => {
             <h2 className="collection-preview__title">{title}</h2>
             <div className="collection-preview__list">
                 {
-                    items.map(item => <CollectionItem id={item.id} item={item} />)
+                    items.map(item => <CollectionItem id={item.id} key={item.id} item={item} />)
                 }
             </div>
         </div>
